@@ -6,8 +6,8 @@
   "scripts": {
     "start": "nodemon server.js",
     "startDev": "webpack-dev-server --hot --inline",
-    "test": "export NODE_ENV=test && mocha --timeout 20000 tests/",
-    "build": "webpack --watch"
+    "build": "webpack --watch",
+    "test": "mocha --timeout 20000 tests/"
   },
   "repository": {
     "type": "git",
