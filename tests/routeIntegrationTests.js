@@ -7,10 +7,8 @@ const expect = chai.expect;
 
 const HOST = 'http://localhost:8080';
 
-
-// test if this is necessary
 require('../server.js');
-console.log('process', process)
+
 describe('Server routes', function() {
   describe('GET request to /', function() {
     it('should respond with a status of 200', function(done) {
@@ -31,12 +29,12 @@ describe('Server routes', function() {
     });
   });
 
-  describe('GET request to /bundle.js', function() {
-    it('should respond with the bundle.js file', function(done) {
+  describe('GET request to /bundle.js', () => {
+    it('should respond with the bundle.js file', (done) => {
       request(HOST)
         .get('/bundle.js')
         .expect((response) => {
-          const bundleFile = fs.readFileSync(path.join(__dirname, '../', 'client', 'bundle.js'));
+          const bundleFile = fs.readFileSync(path.join(__dirname, '../', 'client', 'dist', 'bundle.js'));
           expect(bundleFile.toString()).to.equal(response.text);
         })
         .expect(200, done);
