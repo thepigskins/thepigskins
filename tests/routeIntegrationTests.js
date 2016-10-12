@@ -36,7 +36,7 @@ describe('Server routes', () => {
         request(HOST)
           .get('/bundle.js')
           .expect((response) => {
-            const bundleFile = fs.readFileSync(path.join(__dirname, '../', 'client', 'bundle.js'));
+            const bundleFile = fs.readFileSync(path.join(__dirname, '../', 'client', 'dist', 'bundle.js'));
             expect(bundleFile.toString()).to.equal(response.text);
           })
           .expect(200, done);
