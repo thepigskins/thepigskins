@@ -1,13 +1,17 @@
 const path = require('path');
+const webpack = require('webpack');
+
 const PATHS = {
 	app: './client/src/index.js',
 	dist: path.join(__dirname, 'client', 'dist'),
 };
 
 module.exports = {
-  entry: {
-  javascript: PATHS.app,
-  },
+  entry: [
+    'webpack-dev-server/client?http://localhost:8080', //required for react-hot-loader
+    'webpack/hot/only-dev-server',
+    './client/src/index.js'
+  ],
   output: {
     path: PATHS.dist,
     publicPath: '/',
@@ -16,20 +20,20 @@ module.exports = {
   module: {
   	loaders: [{
   		exclude: /node_modules/,
-  		loader: 'babel',
-  		query: {
-  			presets: ['react', 'es2015'],
-  	  },
+  		loaders: ['babel-loader']
   	}],
   },
-  watch: true,
-  devTool: 'source-map',
+  watch: true, //what does watch do? 
+  devTool: 'source-map', //what does devTool sourcemap do?
   devServer: {
   	contentBase: PATHS.dist,
   },
   resolve: {
   	extensions: ['', '.js', '.jsx'],
   },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ]
 }
 
 //Path is looking to serve HTML and CSS, these need to be inside the same 
