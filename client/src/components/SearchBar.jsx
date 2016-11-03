@@ -4,17 +4,12 @@ import { Component, PropTypes } from 'react';
 export default class SearchBar extends Component {
   render() {
     return (
-      <div className="avatar">
-     
+      <div>
+        <input> </input> 
       </div> 
     )
   }
 
 
-
-
 }
 
-SearchBar.PropTypes = {
-  searchedPlayer: PropTypes.string
-}
