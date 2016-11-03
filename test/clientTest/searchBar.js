@@ -11,9 +11,10 @@ describe('<SearchBar />', function() {
     expect(wrapper.find('input')).to.have.length(1);
   });
 
-  it('should have props for searched item', function () {
+  it('should have props for searchBar', function () {
     const wrapper = shallow(<SearchBar />);
-    expect(wrapper.props().searchedPlayer).to.be.defined;
+    expect(wrapper.props().email).to.be.defined;
+    expect(wrapper.props().src).to.be.defined; 
   })
 
 });
