@@ -5,7 +5,7 @@ export default class SearchBar extends Component {
   render() {
     return (
       <div>
-        <form action="">
+        <form onSubmit={this.props.getNewPlayer} action="">
           <input 
             type='text'
           /> 
