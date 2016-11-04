@@ -19,6 +19,21 @@ export default class App extends Component {
     //causing a page re-render after data is obtained with new player.
     //table component will iterate over playerData and render specific
     //data as needed.
+    const newPlayerData = {
+      id: 99,
+      name: 'Shawn Johnson',
+      position: 'QB',
+      passCompletions: 420,
+      touchDowns: 15,
+      totalYards: 1200,
+      sacks: null,
+      interceptions: null,
+      tackles: null,
+      fantasyPoints: 100
+    };
+    let dataToRender = {};
+    dataToRender[newPlayerData.name] = newPlayerData;
+    this.setState(this.state.playerData.push(dataToRender));
   }
   render() {
     return (
