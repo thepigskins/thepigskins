@@ -9,7 +9,7 @@ export default class App extends Component {
     super();
     this.state = {
       playerData : [],
-      filterOption : null,
+      filterOption : '',
     }
     this.getNewPlayer = this.getNewPlayer.bind(this);
   }
@@ -33,7 +33,8 @@ export default class App extends Component {
     };
     let dataToRender = {};
     dataToRender[newPlayerData.name] = newPlayerData;
-    this.setState(this.state.playerData.push(dataToRender));
+
+    this.setState({playerData: this.state.playerData.concat(dataToRender)});
   }
   render() {
     return (
@@ -45,3 +46,8 @@ export default class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  playerData: React.PropTypes.array,
+  filterOption: React.PropTypes.string
+};
