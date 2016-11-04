@@ -6,7 +6,7 @@ import Dropdown from './Dropdown';
 export default (props) => {
   return (
     <div>
-      <SearchBar />
+      <SearchBar getNewPlayer={props.getNewPlayer}/>
       <Dropdown />
     </div>
   )
