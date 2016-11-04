@@ -5,7 +5,11 @@ export default class SearchBar extends Component {
   render() {
     return (
       <div>
-        <input> </input> 
+        <form action="">
+          <input 
+            type='text'
+          /> 
+        </form>
       </div> 
     )
   }
