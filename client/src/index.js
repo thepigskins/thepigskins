@@ -1,2 +1,9 @@
-document.write('THIS IS HOT Reloading, but it isnt React Hot Relaoding');
-console.log('app loaded');
+import React from 'react';
+import { render } from 'react-dom';
+
+import App from './components/App';
+
+render(
+  <App />,
+  document.getElementById('app')
+);
