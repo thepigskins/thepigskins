@@ -9,7 +9,7 @@ export default class App extends Component {
     super();
     this.state = {
       playerData : [],
-      filterOption : null,
+      filterOption : '',
     }
     this.getNewPlayer = this.getNewPlayer.bind(this);
   }
@@ -19,6 +19,22 @@ export default class App extends Component {
     //causing a page re-render after data is obtained with new player.
     //table component will iterate over playerData and render specific
     //data as needed.
+    const newPlayerData = {
+      id: 99,
+      name: 'Shawn Johnson',
+      position: 'QB',
+      passCompletions: 420,
+      touchDowns: 15,
+      totalYards: 1200,
+      sacks: null,
+      interceptions: null,
+      tackles: null,
+      fantasyPoints: 100
+    };
+    let dataToRender = {};
+    dataToRender[newPlayerData.name] = newPlayerData;
+
+    this.setState({playerData: this.state.playerData.concat(dataToRender)});
   }
   render() {
     return (
@@ -30,3 +46,8 @@ export default class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  playerData: React.PropTypes.array,
+  filterOption: React.PropTypes.string
+};
