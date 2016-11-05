@@ -18,6 +18,7 @@ const scraperController = {
 
         //Creating player Object 
         let playerObj = {}; 
+        let statObj = {}; 
         let rowString = $(element).children('.playertablePlayerName').text();
         let count = 0; 
     
@@ -36,36 +37,53 @@ const scraperController = {
           playerObj.position = info[1].slice(0, 4);
         }
           
-
-        //grabbing player Id        
-        let id = $(element).attr('id').slice(4);     
-
-        playersObj[id] = playerObj;
-
         $(element).children('.playertableStat').each((index2, element2) => {
-          let statObj = {}; 
-          if(count % 15 === 0) {
-          } else {
-            statObj['C/A'] = element2;
-            statObj['Pass YDS'] = element2;
-            statObj['Pass TD'] = element2;
-            statObj['INT'] = element2; 
-            statObj['RUSH ATT'] = element2;
-            statObj['RUSH YDS'] = element2;
-            statObj['REC'] = element2;
-            statObj['REC YDS'] = element2;
-            statObj['REC TD'] = element2;
-            statObj['REC TARGET'] = element2;
-            statObj['2PC'] = element2;
-            statObj['FUML'] = element2;
-            statObj['DEFENSE TD']; 
-
+          if (count === 0) {
+            statObj['C/A'] = $(element2).text();
+          } else if (count === 1) {
+            statObj['Pass YDS'] = $(element2).text();
+          } else if (count === 2) {
+            statObj['Pass TD'] = $(element2).text();
+          } else if (count === 3) {
+            statObj['INT'] = $(element2).text(); 
+          } else if (count === 4) {
+            statObj['RUSH ATT'] = $(element2).text();          
+          } else if (count === 5) {
+            statObj['RUSH YDS'] = $(element2).text();
+          } else if (count === 6) {
+            statObj['RUSH TD'] === $(element2).text();
+          } else if (count === 7) {
+            statObj['REC'] = $(element2).text();
+          } else if (count === 8) {
+            statObj['REC YDS'] = $(element2).text();
+          } else if (count === 9) {
+            statObj['REC TD'] = $(element2).text();
+          } else if (count === 10) {
+            statObj['REC TARGET'] = $(element2).text();
+          } else if (count === 11) {
+            statObj['2PC'] = $(element2).text();
+          } else if (count === 12) {
+            statObj['FUML'] = $(element2).text();
+          } else if (count === 13) {
+            statObj['DEFENSE TD'] = $(element2).text();
+          } else if (count === 14) {
+            count = 0; 
+            statObj['TOTAL'] = $(element2).text();
+            playerObj['STATS'] = statObj;
+            statObj = {};
           }
+          count +=1;
+
         });
+
+      //grabbing player Id        
+      let id = $(element).attr('id').slice(4);     
+      playersObj[id] = playerObj;
+
 
       });
         
-      //console.log(playersObj);
+      console.log(playersObj);
       res.end("HELLO");
     })
   },
