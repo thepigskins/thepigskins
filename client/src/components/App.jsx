@@ -50,15 +50,13 @@ export default class App extends Component {
     e.preventDefault();
     if (this.state.playerData.length < 2) alert('Please add one more players to compare');
     const bestPlayer = this.state.playerData.reduce((bestPlayer, playerObj) => {
-      if (!bestPlayer.name && !bestPlayer.score) {
-        bestPlayer.name = playerObj.name;
-        bestPlayer.score = playerObj.fantasyPoints;
-      } else if (playerObj.fantasyPoints > bestPlayer.score) {
+      if (playerObj.fantasyPoints > bestPlayer.score) {
         bestPlayer.name = playerObj.name;
         bestPlayer.score = playerObj.fantasyPoints;
       }
       return bestPlayer;
-    }, {}).name;
+    }, {score : -1}).name;
+    
     this.setState({bestPlayer})
     
   }
