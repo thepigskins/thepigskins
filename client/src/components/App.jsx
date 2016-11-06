@@ -3,27 +3,30 @@ import React, { Component } from 'react';
 
 import UserInput from './UserInput';
 import TableHeader from './TableHeader';
+import BestPlayer from './BestPlayer';
 
 export default class App extends Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
-      playerData : [{
-      name: 'Shawn Johnson',
-      position: 'QB',
-      passCompletions: 420,
-      touchDowns: 15,
-      totalYards: 1200,
-      sacks: null,
-      interceptions: null,
-      tackles: null,
-      fantasyPoints: 100
-    }],
-      filterOption : '',
+      playerData: [{
+        name: 'Blah Bobson',
+        position: 'QB',
+        passCompletions: 420,
+        touchDowns: 15,
+        totalYards: 1200,
+        sacks: null,
+        interceptions: null,
+        tackles: null,
+        fantasyPoints: 90
+      }],
+      filterOption: '',
+      bestPlayer: ''
     }
     this.getNewPlayer = this.getNewPlayer.bind(this);
+    this.comparePlayers = this.comparePlayers.bind(this);
   }
-  getNewPlayer(e){
+  getNewPlayer(e) {
     e.preventDefault();
     //this will make an AJAX call to the API and update playerData state,
     //causing a page re-render after data is obtained with new player.
@@ -40,29 +43,25 @@ export default class App extends Component {
       tackles: null,
       fantasyPoints: 100
     };
-      const newPlayerData2 = {
-      name: 'Shawn Johnson',
-      position: 'QB',
-      passCompletions: 420,
-      touchDowns: 15,
-      totalYards: 1200,
-      sacks: null,
-      interceptions: null,
-      tackles: null,
-      fantasyPoints: 100
-    };
-    
-    //let dataToRender = {};
-    // dataToRender[newPlayerData.name] = newPlayerData;
-    // this.setState({playerData: this.state.playerData.concat(dataToRender)});
-    this.setState({playerData: this.state.playerData.concat(newPlayerData)});
- }
+    this.setState({ playerData: this.state.playerData.concat(newPlayerData) });
+  }
+  comparePlayers(e) {
+    e.preventDefault();
+    const maxScore = this.state.playerData.reduce((maxScore, playerObj) => {
+      if (maxScore < playerObj.fantasyPoints) maxScore = playerObj.fantasyPoints;
+      return maxScore;
+    },0);
+    const bestPlayer = this.state.playerData.filter((playerObj) => playerObj.fantasyPoints === maxScore)[0].name;
+    this.setState({bestPlayer});
+  }
   render() {
     return (
       <div>
         <h1>The Pig Skins</h1>
-        <UserInput getNewPlayer={this.getNewPlayer} {...this.state}/>
+        {this.state.bestPlayer.length > 0 && <BestPlayer playerName={this.state.bestPlayer}/>}
+        <UserInput getNewPlayer={this.getNewPlayer} {...this.state} />
         {this.state.playerData.length > 0 && <TableHeader {...this.state} />}
+        <button onClick={this.comparePlayers} className="btn btn-primary">Compare Players</button>
       </div>
     );
   }
