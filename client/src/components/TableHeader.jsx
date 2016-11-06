@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-
+import PlayerRow from './PlayerRow';
 export default (props) => {
+  const players = props.playerData.map((playerData) => <PlayerRow playerData={playerData} />);
   return (<div>
             <table className="table">
               <thead>
@@ -16,6 +17,9 @@ export default (props) => {
                   <th>Fantasy Points</th>
                 </tr>
               </thead>
+              <tbody>
+              {players}
+              </tbody>
             </table>
           </div>
    )
