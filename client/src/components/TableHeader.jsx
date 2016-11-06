@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PlayerRow from './PlayerRow';
 export default (props) => {
-  const players = props.playerData.map((playerData) => <PlayerRow playerData={playerData} />);
+  const players = props.playerData.map((playerData) => <PlayerRow deletePlayer={props.deletePlayer} playerData={playerData} />);
   return (<div>
             <table className="table">
               <thead>

@@ -25,6 +25,7 @@ export default class App extends Component {
     }
     this.getNewPlayer = this.getNewPlayer.bind(this);
     this.comparePlayers = this.comparePlayers.bind(this);
+    this.deletePlayer = this.deletePlayer.bind(this);
   }
   getNewPlayer(e) {
     e.preventDefault();
@@ -47,6 +48,7 @@ export default class App extends Component {
   }
   comparePlayers(e) {
     e.preventDefault();
+    if (this.state.playerData.length < 2) alert('Please add one more players to compare');
     const maxScore = this.state.playerData.reduce((maxScore, playerObj) => {
       if (maxScore < playerObj.fantasyPoints) maxScore = playerObj.fantasyPoints;
       return maxScore;
@@ -54,13 +56,17 @@ export default class App extends Component {
     const bestPlayer = this.state.playerData.filter((playerObj) => playerObj.fantasyPoints === maxScore)[0].name;
     this.setState({bestPlayer});
   }
+  deletePlayer(name){
+    const playersKept = this.state.playerData.filter((playerObj) => playerObj.name !== name );
+    this.setState({playerData : keptPlayers})
+  }
   render() {
     return (
       <div>
         <h1>The Pig Skins</h1>
         {this.state.bestPlayer.length > 0 && <BestPlayer playerName={this.state.bestPlayer}/>}
         <UserInput getNewPlayer={this.getNewPlayer} {...this.state} />
-        {this.state.playerData.length > 0 && <TableHeader {...this.state} />}
+        {this.state.playerData.length > 0 && <TableHeader deletePlayer={this.deletePlayer} {...this.state} />}
         <button onClick={this.comparePlayers} className="btn btn-primary">Compare Players</button>
       </div>
     );
