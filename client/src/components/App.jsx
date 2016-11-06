@@ -5,21 +5,51 @@ import UserInput from './UserInput';
 import TableHeader from './TableHeader';
 import BestPlayer from './BestPlayer';
 
+// {'2330': 
+//   { name: 'Tom Brady',
+//     team: 'NE',
+//     position: 'QB',
+//     status: 'OK',
+//     'C/A': '98/134',
+//     'Pass YDS': '1319',
+//        'Pass TD': '12',
+//        INT: '0',
+//        'RUSH ATT': '10',
+//        'RUSH YDS': '44',
+//        REC: '0',
+//        'REC YDS': '0',
+//        'REC TD': '0',
+//        'REC TARGET': '0',
+//        '2PC': '0',
+//        FUML: '0',
+//        'DEFENSE TD': '0',
+//        TOTAL: '102'  }},
+
 export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      playerData: [{
-        name: 'Blah Bobson',
-        position: 'QB',
-        passCompletions: 420,
-        touchDowns: 15,
-        totalYards: 1200,
-        sacks: null,
-        interceptions: null,
-        tackles: null,
-        fantasyPoints: 90
-      }],
+      playerData: [
+        {'2330': 
+  { name: 'Tom Brady',
+    team: 'NE',
+    position: 'QB',
+    status: 'OK',
+    'C/A': '98/134',
+    'Pass YDS': '1319',
+       'Pass TD': '12',
+       INT: '0',
+       'RUSH ATT': '10',
+       'RUSH YDS': '44',
+       REC: '0',
+       'REC YDS': '0',
+       'REC TD': '0',
+       'REC TARGET': '0',
+       '2PC': '0',
+       FUML: '0',
+       'DEFENSE TD': '0',
+       TOTAL: '102'  }}
+      ],
       filterOption: '',
       bestPlayer: ''
     }
@@ -33,17 +63,28 @@ export default class App extends Component {
     //causing a page re-render after data is obtained with new player.
     //table component will iterate over playerData and render specific
     //data as needed.
-    const newPlayerData = {
-      name: 'Shawn Johnson',
+    const newPlayerData =         
+    {'2331': { 
+      name: 'Aaron Rodgers',
+      team: 'GB',
       position: 'QB',
-      passCompletions: 420,
-      touchDowns: 15,
-      totalYards: 1200,
-      sacks: null,
-      interceptions: null,
-      tackles: null,
-      fantasyPoints: 100
-    };
+      status: 'OK',
+      'C/A': '101/114',
+      'Pass YDS': '1919',
+      'Pass TD': '14',
+      INT: '0',
+      'RUSH ATT': '14',
+      'RUSH YDS': '101',
+      REC: '0',
+      'REC YDS': '0',
+      'REC TD': '0',
+      'REC TARGET': '0',
+      '2PC': '0',
+      FUML: '0',
+      'DEFENSE TD': '0',
+      TOTAL: '165'  
+    }
+  };
     this.setState({ playerData: this.state.playerData.concat(newPlayerData) });
   }
   comparePlayers(e) {

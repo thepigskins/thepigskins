@@ -7,14 +7,25 @@ export default (props) => {
               <thead>
                 <tr>
                   <th>Name</th>
+                  <th>Team</th>
                   <th>Position</th>
-                  <th>Pass Completions</th>
-                  <th>TouchDowns</th>
+                  <th>Status</th>
+                  <th>Completion %</th>
+                  <th>Pass Yards</th>
+                  <th>Pass TD</th>
+                  <th>Int</th>
+                  <th>Rush Att</th>
+                  <th>Rush Yards</th>
                   <th>Total Yards</th>
+                  <th>Receptions</th>
+                  <th>Rec Yards</th>
+                  <th>Rec TD</th>
+                  <th>Rec Targets</th>
                   <th>Sacks</th>
                   <th>interceptions</th>
                   <th>Tackles</th>
-                  <th>Fantasy Points</th>
+                  <th>Fumbles</th>
+                  <th>Points</th>
                 </tr>
               </thead>
               <tbody>
@@ -25,22 +36,3 @@ export default (props) => {
    )
 }
 
-// '2330': 
-//   { name: 'Tom Brady',
-//     team: 'NE',
-//     position: 'QB',
-//     status: 'OK',
-//     'C/A': '98/134',
-//     'Pass YDS': '1319',
-//     'Pass TD': '12',
-//      INT: '0',
-//      'RUSH ATT': '10',
-//      'RUSH YDS': '44',
-//       REC: '0',
-//       'REC YDS': '0',
-//       'REC TD': '0',
-//       'REC TARGET': '0',
-//       '2PC': '0',
-//       FUML: '0',
-//       'DEFENSE TD': '0',
-//       TOTAL: '102' },
