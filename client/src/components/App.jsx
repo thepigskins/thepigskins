@@ -55,14 +55,14 @@ export default class App extends Component {
         bestPlayer.score = playerObj.fantasyPoints;
       }
       return bestPlayer;
-    }, {score : -1}).name;
+    }, {score : -Infinity}).name;
     
     this.setState({bestPlayer})
     
   }
   deletePlayer(name) {
     const playersKept = this.state.playerData.filter((playerObj) => playerObj.name !== name);
-    this.setState({ playerData: keptPlayers })
+    this.setState({ playerData: playersKept })
   }
   render() {
     return (
