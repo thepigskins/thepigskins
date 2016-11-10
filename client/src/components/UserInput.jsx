@@ -4,6 +4,7 @@ import Dropdown from './Dropdown';
 
 
 export default (props) => {
+  console.log('props', props)
   return (
     <div>
       <SearchBar getNewPlayer={props.getNewPlayer}/>

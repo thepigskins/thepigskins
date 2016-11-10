@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PlayerRow from './PlayerRow';
+
 export default (props) => {
   const players = props.playerData.map((playerData) => <PlayerRow deletePlayer={props.deletePlayer} playerData={playerData} />);
   return (<div>
@@ -33,24 +34,3 @@ export default (props) => {
           </div>
    )
 }
-
-    // {'2331': { 
-    //   name: 'Aaron Rodgers',
-    //   team: 'GB',
-    //   position: 'QB',
-    //   status: 'OK',
-    //   'C/A': '101/114',
-    //   'Pass YDS': '1919',
-    //   'Pass TD': '14',
-    //   INT: '0',
-    //   'RUSH ATT': '14',
-    //   'RUSH YDS': '101',
-    //   REC: '0',
-    //   'REC YDS': '0',
-    //   'REC TD': '0',
-    //   'REC TARGET': '0',
-    //   '2PC': '0',
-    //   FUML: '0',
-    //   'DEFENSE TD': '0',
-    //   TOTAL: '165'  
-    // }
