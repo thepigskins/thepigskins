@@ -4,7 +4,7 @@ import PlayerRow from './PlayerRow';
 export default (props) => {
   const players = props.playerData.map((playerData) => <PlayerRow deletePlayer={props.deletePlayer} playerData={playerData} />);
   return (<div>
-            <table className="table">
+            <table className="table table-striped">
               <thead>
                 <tr>
                   <th>Name</th>

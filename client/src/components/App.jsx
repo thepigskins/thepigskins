@@ -9,27 +9,7 @@ export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      playerData: [
-        {'2330': 
-  { name: 'Tom Brady',
-    team: 'NE',
-    position: 'QB',
-    status: 'OK',
-    'C/A': '98/134',
-    'Pass YDS': '1319',
-       'Pass TD': '12',
-       INT: '0',
-       'RUSH ATT': '10',
-       'RUSH YDS': '44',
-       REC: '0',
-       'REC YDS': '0',
-       'REC TD': '0',
-       'REC TARGET': '0',
-       '2PC': '0',
-       FUML: '0',
-       'DEFENSE TD': '0',
-       TOTAL: '102'  }}
-      ],
+      playerData: [],
       filterOption: '',
       bestPlayer: ''
     }
@@ -37,36 +17,54 @@ export default class App extends Component {
     this.comparePlayers = this.comparePlayers.bind(this);
     this.deletePlayer = this.deletePlayer.bind(this);
   }
+
+  componentDidMount() {
+
+  }
+
   getNewPlayer(e) {
     e.preventDefault();
     //this will make an AJAX call to the API and update playerData state,
     //causing a page re-render after data is obtained with new player.
     //table component will iterate over playerData and render specific
     //data as needed.
-    const newPlayerData =         
-    {'2331': { 
-      name: 'Aaron Rodgers',
-      team: 'GB',
-      position: 'QB',
-      status: 'OK',
-      'C/A': '101/114',
-      'Pass YDS': '1919',
-      'Pass TD': '14',
-      INT: '0',
-      'RUSH ATT': '14',
-      'RUSH YDS': '101',
-      REC: '0',
-      'REC YDS': '0',
-      'REC TD': '0',
-      'REC TARGET': '0',
-      '2PC': '0',
-      FUML: '0',
-      'DEFENSE TD': '0',
-      TOTAL: '165'  
-    }
-  };
-    this.setState({ playerData: this.state.playerData.concat(newPlayerData) });
+  //   const newPlayerData =         
+  //   {'2331': { 
+  //     name: 'Aaron Rodgers',
+  //     team: 'GB',
+  //     position: 'QB',
+  //     status: 'OK',
+  //     'C/A': '101/114',
+  //     'Pass YDS': '1919',
+  //     'Pass TD': '14',
+  //     INT: '0',
+  //     'RUSH ATT': '14',
+  //     'RUSH YDS': '101',
+  //     REC: '0',
+  //     'REC YDS': '0',
+  //     'REC TD': '0',
+  //     'REC TARGET': '0',
+  //     '2PC': '0',
+  //     FUML: '0',
+  //     'DEFENSE TD': '0',
+  //     TOTAL: '165'  
+  //   }
+  // };
+  $.get('http://localhost:8000/test').done( (data) => {
+    console.log('data', data)
+    const playerID = Object.keys(data)[Math.round(Math.random() * 50)];
+    const playerStats = data[playerID].STATS;
+    delete data[playerID].STATS;
+    const newPlayerState = Object.assign({}, data[playerID], playerStats);
+    const newObj = {};
+    newObj[playerID] = newPlayerState;
+
+    console.log(JSON.stringify(newObj))
+    this.setState({playerData: this.state.playerData.concat(newObj)});
+  });
+    // this.setState({ playerData: this.state.playerData.concat(newPlayerData) });
   }
+
   comparePlayers(e) {
     e.preventDefault();
     if (this.state.playerData.length < 2) alert('Please add one more players to compare');
@@ -80,14 +78,15 @@ export default class App extends Component {
       return bestPlayer;
     }, {score : -Infinity}).name;
     
-    this.setState({bestPlayer})
-    
+    this.setState({bestPlayer})  
   }
+
   deletePlayer(id) {
     const playersKept = this.state.playerData.filter((playerObj) => Object.keys(playerObj)[0] !== id);
     this.setState({ playerData: playersKept })
   }
   render() {
+    console.log(this.state.playerData)
     return (
       <div>
         <h1>The Pig Skins</h1>
