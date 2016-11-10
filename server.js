@@ -2,15 +2,19 @@ const express = require('express');
 const path = require('path');
 const scraperController = require('./scraper'); 
 const app = express();
-const PORT = 8080;
+const PORT = 8000;
 
-app.use(express.static(path.join(__dirname, 'client')));
+app.use(express.static(path.join(__dirname, 'client', 'dist')));
 
 app.use((request, response, next) => {
   response.header('Access-Control-Allow-Origin', '*');
   response.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   console.log("STATUS CODE", response.statusCode);
   next();
+});
+
+app.get('/', (req, res) => {
+  res.sendFile(path.resolve('client/dist/index.html'));
 });
 
 app.get('/test', scraperController.getMainData);

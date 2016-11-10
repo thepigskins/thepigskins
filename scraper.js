@@ -3,7 +3,7 @@
 const cheerio = require('cheerio');
 const request = require('request');
 
-const allPlayersUrl = 'http://games.espn.com/ffl/leaders?startIndex=0';
+// const allPlayersUrl = 'http://games.espn.com/ffl/leaders?startIndex=0';
 const allPlayerSeason = 'http://games.espn.com/ffl/leaders?startIndex=0&seasonTotals=true&seasonId=2016';
 const playersObj = {}; 
 
@@ -83,14 +83,13 @@ const scraperController = {
 
       });
         
-      console.log(playersObj);
-      res.end("HELLO");
+      return res.json(playersObj);
     })
   },
 
-  populateJson: (req, res, next) => {
+  // populateJson: (req, res, next) => {
   
-  }
+  // }
 };
 
 
