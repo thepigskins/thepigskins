@@ -5,7 +5,7 @@ const PlayerRow = (props) => {
   const row = props.playerData ? Object.keys(props.playerData[playerId]).map((datum) => {
     return <td>{props.playerData[playerId][datum]}</td>
   }) : '';
-  return (<tr>{row}<button onClick={() => props.deletePlayer(playerId)}>remove player</button></tr>
+  return (<tr>{row}<button onClick={() => props.deletePlayer(props.index)}>remove player</button></tr>
   )
 }
 

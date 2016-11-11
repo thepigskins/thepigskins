@@ -30,10 +30,11 @@ module.exports = {
   // },
   resolve: {
   	extensions: ['', '.js', '.jsx'],
-  },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ]
+  }
+  // ,
+  // plugins: [
+  //   new webpack.HotModuleReplacementPlugin()
+  // ]
 }
 
 //Path is looking to serve HTML and CSS, these need to be inside the same 
