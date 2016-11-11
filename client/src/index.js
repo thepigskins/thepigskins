@@ -1,9 +1,11 @@
 import React from 'react';
 import { render } from 'react-dom';
-
-import App from './components/App';
-
+import { Provider } from 'react-redux';
+import App from './Containers/App';
+import store from './store';
 render(
-  <App />,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('app')
 );
