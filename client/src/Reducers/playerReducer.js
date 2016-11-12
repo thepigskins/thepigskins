@@ -6,8 +6,8 @@ const initialState = {
       bestPlayer: {}
     };
 
-export default function (state = initialState, action) {
-  console.log("reducerrrrr", action.type, GET_PLAYER)
+export default function playerReducer(state = initialState, action) {
+  console.log("action", action)
   switch (action.type) {
     case GET_PLAYER:
       console.log('REDUCER', action.payload)
@@ -37,6 +37,5 @@ export default function (state = initialState, action) {
       let newState2 = Object.assign({}, state, {bestPlayer})
       return newState2;
   } 
-  console.log("END OF REDUCER", action.type);
   return state;
 }
