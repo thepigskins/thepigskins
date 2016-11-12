@@ -19,7 +19,7 @@ class App extends Component {
 
   getNewPlayer(playerName) {
     console.log('sfsf')
-    actions.getPlayerActionCreator(playerName);
+    this.props.getPlayerActionCreator(playerName);
   }
 
   comparePlayers() {
@@ -48,6 +48,16 @@ App.propTypes = {
   filterOption: React.PropTypes.string
 };
 
-const mapStateToProps = (state) => { return {players : state.player}; }
-const mapDispatchToProps = (dispatch) => { return bindActionCreators(actions,dispatch); }
+const mapStateToProps = (store) => { return {players : store.player}; }
+
+const mapDispatchToProps = (dispatch) => { 
+  return bindActionCreators(actions,dispatch); }
+
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//    getPlayerActionCreator: playerName => dispatch(actions.getPlayerActionCreator(playerName))
+
+//   }
+// }
+
 export default connect(mapStateToProps,mapDispatchToProps)(App);
