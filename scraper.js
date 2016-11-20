@@ -1,14 +1,15 @@
 'use strict'; 
 const cheerio = require('cheerio');
 const request = require('request');
+const dbController = require('./server/controllers/dbController');
 
 // const allPlayersUrl = 'http://games.espn.com/ffl/leaders?startIndex=0';
 const allPlayerSeason = 'http://games.espn.com/ffl/leaders?startIndex=0&seasonTotals=true&seasonId=2016';
-const playersObj = {}; 
-
 
 const scraperController = {
-  getMainData: (req, res, next) => {
+  getMainData(req, res, next) {
+    const players = {}; 
+
     request(allPlayerSeason, (error, response, html) => {
       const $ = cheerio.load(html); 
 
@@ -51,18 +52,16 @@ const scraperController = {
         playerObj['TOTAL'] = $(playerAttributes[14]).text();
 
       //grabbing player Id        
-      const id = $(rowElement).attr('id').slice(4);     
-      playersObj[id] = playerObj;
+      const id = $(rowElement).attr('id').slice(4);   
+      playerObj.id = id;  
+      players[id] = playerObj;
+
+      dbController.updatePlayer(playerObj);
       });
         
-      return res.json(playersObj);
-    })
-  },
-
-  // populateJson: (req, res, next) => {
-  
-  // }
+      return res.json(players);
+    }); // End of request
+  } // End of getMainData
 };
-
 
 module.exports = scraperController;
