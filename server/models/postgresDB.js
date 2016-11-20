@@ -1,5 +1,4 @@
 'use strict'; 
-
 const Sequelize = require('sequelize');
 
 //CONNECTION INSTANCE  
@@ -9,10 +8,14 @@ const Sequelize = require('sequelize');
 // });
 
 //CONNECTION INSTANCE THROUGH URL 
-const sequelize = new Sequelize('postgres://ptcmvsaa:GS9lS67Kyint8bSW6kX0bM2D9-lvIRFZ@elmer.db.elephantsql.com:5432/ptcmvsaa');
+//const sequelize = new Sequelize('postgres://ptcmvsaa:GS9lS67Kyint8bSW6kX0bM2D9-lvIRFZ@elmer.db.elephantsql.com:5432/ptcmvsaa');
 
-//User Schema 
-const Userza = sequelize.define('userz', {
+
+//Created database pigskins in CLI
+
+const sequelize = new Sequelize('postgres://localhost:5432/pigskins');
+
+const User = sequelize.define('users', {
   id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true},
   userName: Sequelize.STRING,
   firstName: Sequelize.STRING,
@@ -21,7 +24,7 @@ const Userza = sequelize.define('userz', {
 });
 
 const Team = sequelize.define('teams', {
-  _id: { type: Sequelize.INTEGER(8), primaryKey: true },
+  id: { type: Sequelize.INTEGER(8), primaryKey: true },
   teamName: Sequelize.STRING,
   city: Sequelize.STRING
 });
@@ -31,7 +34,7 @@ const Position = sequelize.define('positions', {
 });
 
 const Player = sequelize.define('players', {
-  _id: { type: Sequelize.INTEGER(8), primaryKey: true },
+  id: { type: Sequelize.INTEGER(8), primaryKey: true },
   firstName: Sequelize.STRING,
   lastName: Sequelize.STRING,
   completeAttempts: Sequelize.INTEGER,
@@ -50,12 +53,15 @@ const Player = sequelize.define('players', {
   tdDefense: Sequelize.INTEGER
 });
 
+//Creates columns but needs to add fake data first to create the 
+
+//in callback set the 
+const UserPlayer = sequelize.define('usersplayers', {});
 
 Team.hasMany(Player);
 Position.hasMany(Player);
-Userza.belongsToMany(Player, {through: 'UserPlayer'} );
-Player.belongsToMany(Userza, {through: 'UserPlayer'} );
-
+User.belongsToMany(Player, {through: 'usersplayers'} );
+Player.belongsToMany(User, {through: 'usersplayers'} );
 
 
 sequelize.sync()
@@ -63,4 +69,4 @@ sequelize.sync()
   console.log(error);
 })
 
-module.exports = { sequelize, Userza, Team, Position, Player }
+module.exports = { sequelize, User, Team, Position, Player, UserPlayer }
