@@ -1,5 +1,4 @@
 'use strict'; 
-
 const cheerio = require('cheerio');
 const request = require('request');
 
@@ -11,18 +10,16 @@ const playersObj = {};
 const scraperController = {
   getMainData: (req, res, next) => {
     request(allPlayerSeason, (error, response, html) => {
-      let $ = cheerio.load(html); 
+      const $ = cheerio.load(html); 
 
-
-      $('.pncPlayerRow').each((index, element) => {
+      $('.pncPlayerRow').each((rowIndex, rowElement) => {
 
         //Creating player Object 
-        let playerObj = {}; 
-        let statObj = {}; 
-        let rowString = $(element).children('.playertablePlayerName').text();
-        let count = 0; 
-    
+        const playerObj = {}; 
+        const rowString = $(rowElement).children('.playertablePlayerName').text();
+        const playerAttributes = $(rowElement).children('.playertableStat');
         const commaIndex = rowString.indexOf(',');
+
         if (commaIndex !== -1) {
           playerObj.name = rowString.slice(0, commaIndex);
           //const info = rowString.slice(commaIndex + 2).split(' ').join('');
@@ -36,51 +33,26 @@ const scraperController = {
           playerObj.team = info[0];
           playerObj.position = info[1].slice(0, 4);
         }
-          
-        $(element).children('.playertableStat').each((index2, element2) => {
-          if (count === 0) {
-            statObj['C/A'] = $(element2).text();
-          } else if (count === 1) {
-            statObj['Pass YDS'] = $(element2).text();
-          } else if (count === 2) {
-            statObj['Pass TD'] = $(element2).text();
-          } else if (count === 3) {
-            statObj['INT'] = $(element2).text(); 
-          } else if (count === 4) {
-            statObj['RUSH ATT'] = $(element2).text();          
-          } else if (count === 5) {
-            statObj['RUSH YDS'] = $(element2).text();
-          } else if (count === 6) {
-            statObj['RUSH TD'] === $(element2).text();
-          } else if (count === 7) {
-            statObj['REC'] = $(element2).text();
-          } else if (count === 8) {
-            statObj['REC YDS'] = $(element2).text();
-          } else if (count === 9) {
-            statObj['REC TD'] = $(element2).text();
-          } else if (count === 10) {
-            statObj['REC TARGET'] = $(element2).text();
-          } else if (count === 11) {
-            statObj['2PC'] = $(element2).text();
-          } else if (count === 12) {
-            statObj['FUML'] = $(element2).text();
-          } else if (count === 13) {
-            statObj['DEFENSE TD'] = $(element2).text();
-          } else if (count === 14) {
-            count = 0; 
-            statObj['TOTAL'] = $(element2).text();
-            playerObj['STATS'] = statObj;
-            statObj = {};
-          }
-          count +=1;
-
-        });
+        
+        playerObj['C/A'] = $(playerAttributes[0]).text();
+        playerObj['Pass YDS'] = $(playerAttributes[1]).text();
+        playerObj['Pass TD'] = $(playerAttributes[2]).text();
+        playerObj['INT'] = $(playerAttributes[3]).text();
+        playerObj['RUSH ATT'] = $(playerAttributes[4]).text();
+        playerObj['RUSH YDS'] = $(playerAttributes[5]).text();
+        playerObj['RUSH TD'] = $(playerAttributes[6]).text();
+        playerObj['REC'] = $(playerAttributes[7]).text();
+        playerObj['REC YDS'] = $(playerAttributes[8]).text();
+        playerObj['REC TD'] = $(playerAttributes[9]).text();
+        playerObj['REC TARGET'] = $(playerAttributes[10]).text();
+        playerObj['2PC'] = $(playerAttributes[11]).text();
+        playerObj['FUML'] = $(playerAttributes[12]).text();
+        playerObj['DEFENSE TD'] = $(playerAttributes[13]).text();
+        playerObj['TOTAL'] = $(playerAttributes[14]).text();
 
       //grabbing player Id        
-      let id = $(element).attr('id').slice(4);     
+      const id = $(rowElement).attr('id').slice(4);     
       playersObj[id] = playerObj;
-
-
       });
         
       return res.json(playersObj);
