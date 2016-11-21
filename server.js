@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.resolve('client/dist/index.html'));
 });
 
-app.get('/test', scraperController.getMainData);
+app.get('/populateDatabase', scraperController.getMainData);
 
 app.get('/findPlayer', dbController.findPlayer, (req, res) => {
   res.send(req.player);
