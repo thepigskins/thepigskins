@@ -72,8 +72,8 @@ const dbController = {
   }, // End of updatePlayer
 
   findPlayer(req, res, next) {
-    const firstName = req.q.firstName;
-    const lastName = req.q.lastName;
+    const firstName = req.query.firstName;
+    const lastName = req.query.lastName;
 
     database.Player.findOne({ where: { firstName, lastName } }).then((player) => {
       req.player = player;
