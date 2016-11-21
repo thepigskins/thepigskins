@@ -25,6 +25,10 @@ app.get('/findPlayer', dbController.findPlayer, (req, res) => {
   res.send(req.player);
 });
 
+app.get('/getAllPlayers', dbController.getAllPlayers, (req, res) => {
+  res.send(req.allPlayers);
+});
+
 app.listen(PORT, () => {
 	console.log(`Listening on ${PORT}`);
 });
