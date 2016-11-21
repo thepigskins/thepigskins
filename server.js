@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 app.get('/test', scraperController.getMainData);
 
 app.get('/findPlayer', dbController.findPlayer, (req, res) => {
-  res.send(JSON.stringify(req.player));
+  res.send(req.player);
 });
 
 app.listen(PORT, () => {
