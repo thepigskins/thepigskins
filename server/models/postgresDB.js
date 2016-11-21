@@ -1,6 +1,6 @@
 'use strict'; 
 const Sequelize = require('sequelize');
-
+console.log('in db')
 //CONNECTION INSTANCE  
 // const sequelize = new Sequelize('ptcmvsaa', 'ptcmvsaa', 'GS9lS67Kyint8bSW6kX0bM2D9-lvIRFZ', {
 //   host: 'elmer-02.db.elephantsql.com',
@@ -37,20 +37,22 @@ const Player = sequelize.define('players', {
   id: { type: Sequelize.INTEGER(8), primaryKey: true },
   firstName: Sequelize.STRING,
   lastName: Sequelize.STRING,
-  completeAttempts: Sequelize.INTEGER,
-  ydsThrow: Sequelize.INTEGER,
-  tdThrow: Sequelize.INTEGER,
-  intThrow: Sequelize.INTEGER,
+  completedPasses: Sequelize.INTEGER,
+  attemptedPasses: Sequelize.INTEGER,
+  ydsThrown: Sequelize.INTEGER,
+  tdThrows: Sequelize.INTEGER,
+  intThrows: Sequelize.INTEGER,
   rushAtt: Sequelize.INTEGER,
   ydsRush: Sequelize.INTEGER,
   tdRush: Sequelize.INTEGER,
-  reception: Sequelize.INTEGER,
+  receptions: Sequelize.INTEGER,
   ydsReception: Sequelize.INTEGER,
-  tdReception: Sequelize.INTEGER,
+  tdReceptions: Sequelize.INTEGER,
   targetReception: Sequelize.INTEGER,
   twoPt: Sequelize.INTEGER,
-  fuml: Sequelize.INTEGER,
-  tdDefense: Sequelize.INTEGER
+  fumble: Sequelize.INTEGER,
+  tdDefense: Sequelize.INTEGER,
+  totalPoints: Sequelize.INTEGER
 });
 
 //Creates columns but needs to add fake data first to create the 

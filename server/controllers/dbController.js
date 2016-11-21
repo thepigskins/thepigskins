@@ -17,20 +17,22 @@ const dbController = {
       id: player.id,
       firstName: player.firstName,
       lastName: player.lastName,
-      completeAttempts: player.completeAttempts,
-      ydsThrow: player.ydsThros,
-      tdThrow: player.tdThrow,
-      intThrow: player.intThrow,
+      completedPasses: player.completedPasses,
+      attemptedPasses: player.attemptedPasses,
+      ydsThrown: player.ydsThrown,
+      tdThrows: player.tdThrows,
+      intThrows: player.intThrows,
       rushAtt: player.rushAtt,
       ydsRush: player.ydsRush,
       tdRush: player.tdRush,
-      reception: player.reception,
+      receptions: player.receptions,
       ydsReception: player.ydsReception,
-      tdReception: player.tdReception,
+      tdReceptions: player.tdReceptions,
       targetReception: player.targetReception,
       twoPt: player.twoPt,
-      fuml: player.fuml,
-      tdDefense: player.tdDefense
+      fumble: player.fumble,
+      tdDefense: player.tdDefense,
+      totalPoints: player.totalPoints
     }).catch((error) => {
       console.log(error);
     });
@@ -48,20 +50,22 @@ const dbController = {
           id: playerData.id,
           firstName: playerData.firstName,
           lastName: playerData.lastName,
-          completeAttempts: playerData.completeAttempts,
-          ydsThrow: playerData.ydsThros,
-          tdThrow: playerData.tdThrow,
-          intThrow: playerData.intThrow,
+          completedPasses: playerData.completedPasses,
+          attemptedPasses: playerData.attemptedPasses,
+          ydsThrown: playerData.ydsThrown,
+          tdThrows: playerData.tdThrows,
+          intThrows: playerData.intThrows,
           rushAtt: playerData.rushAtt,
           ydsRush: playerData.ydsRush,
           tdRush: playerData.tdRush,
-          reception: playerData.reception,
+          receptions: playerData.receptions,
           ydsReception: playerData.ydsReception,
-          tdReception: playerData.tdReception,
+          tdReceptions: playerData.tdReceptions,
           targetReception: playerData.targetReception,
           twoPt: playerData.twoPt,
-          fuml: playerData.fuml,
-          tdDefense: playerData.tdDefense
+          fumble: playerData.fumble,
+          tdDefense: playerData.tdDefense,
+          totalPoints: playerData.totalPoints
         });
       } // End of else
     }); // End of findOne
@@ -91,31 +95,3 @@ const dbController = {
 };
 
 module.exports = dbController;
-
-
-// {
-//   userName: 'User43',
-//   firstName: 'Bryan',
-//   lastName: 'Daniel',
-//   password: 'password'
-// }
-
-// {
-//     id: 01234567,
-//     firstName: 'Philip',
-//     lastName: 'Rivers',
-//     completeAttempts: 100,
-//     ydsThrow: 100,
-//     tdThrow: 100,
-//     intThrow: 100,
-//     rushAtt: 100,
-//     ydsRush: 100,
-//     tdRush: 100,
-//     reception: 100,
-//     ydsReception: 100,
-//     tdReception: 100,
-//     targetReception: 100,
-//     twoPt: 100,
-//     fuml: 100,
-//     tdDefense: 100
-//   }
