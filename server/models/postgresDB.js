@@ -1,6 +1,8 @@
-'use strict'; 
+'use strict';
+const REMOTE_URL = require('../database.js');
+const LOCAL_URL = 'postgres://localhost:5432/pigskins';
 const Sequelize = require('sequelize');
-console.log('in db')
+
 //CONNECTION INSTANCE  
 // const sequelize = new Sequelize('ptcmvsaa', 'ptcmvsaa', 'GS9lS67Kyint8bSW6kX0bM2D9-lvIRFZ', {
 //   host: 'elmer-02.db.elephantsql.com',
@@ -11,16 +13,14 @@ console.log('in db')
 //const sequelize = new Sequelize('postgres://ptcmvsaa:GS9lS67Kyint8bSW6kX0bM2D9-lvIRFZ@elmer.db.elephantsql.com:5432/ptcmvsaa');
 
 
-//Created database pigskins in CLI
-
-const sequelize = new Sequelize('postgres://localhost:5432/pigskins');
+const sequelize = new Sequelize(REMOTE_URL);
 
 const User = sequelize.define('users', {
-  id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true},
+  id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
   userName: Sequelize.STRING,
   firstName: Sequelize.STRING,
   lastName: Sequelize.STRING,
-  password: Sequelize.STRING 
+  password: Sequelize.STRING
 });
 
 const Team = sequelize.define('teams', {
@@ -62,13 +62,13 @@ const UserPlayer = sequelize.define('usersplayers', {});
 
 Team.hasMany(Player);
 Position.hasMany(Player);
-User.belongsToMany(Player, {through: 'usersplayers'} );
-Player.belongsToMany(User, {through: 'usersplayers'} );
+User.belongsToMany(Player, { through: 'usersplayers' });
+Player.belongsToMany(User, { through: 'usersplayers' });
 
 
 sequelize.sync()
-.catch((error) => {
-  console.log(error);
-})
+  .catch((error) => {
+    console.log(error);
+  })
 
 module.exports = { sequelize, User, Team, Position, Player, UserPlayer }

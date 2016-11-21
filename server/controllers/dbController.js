@@ -76,6 +76,7 @@ const dbController = {
     const lastName = req.query.lastName;
 
     database.Player.findOne({ where: { firstName, lastName } }).then((player) => {
+      if (!player) res.send(null);
       req.player = player;
       next();
     }).catch((error) => {
@@ -89,6 +90,17 @@ const dbController = {
       database.Player.find({ where: { firstName } }).then((player) => {
         user.setPlayers(player);
       });
+    });
+  },
+
+  getAllPlayers(req, res, next) {
+    database.Player.findAll().then((players) => {
+      if (!players) res.send(null);
+      req.allPlayers = players.map(player => player.dataValues);
+      next();
+    }).catch((error) => {
+      console.log(error);
+      res.send(error);
     });
   }
 
