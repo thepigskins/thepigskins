@@ -1,10 +1,12 @@
 const express = require('express');
 const path = require('path');
-const scraperController = require('./scraper'); 
+const scraperController = require('./scraper');
+const dbController = require('./server/controllers/dbController');
 const app = express();
-const PORT = 8080;
+const PORT = 8000;
 
-app.use(express.static(path.join(__dirname, 'client')));
+
+app.use(express.static(path.join(__dirname, 'client', 'dist')));
 
 app.use((request, response, next) => {
   response.header('Access-Control-Allow-Origin', '*');
@@ -13,7 +15,19 @@ app.use((request, response, next) => {
   next();
 });
 
-app.get('/test', scraperController.getMainData);
+app.get('/', (req, res) => {
+  res.sendFile(path.resolve('client/dist/index.html'));
+});
+
+app.get('/populateDatabase', scraperController.getMainData);
+
+app.get('/findPlayer', dbController.findPlayer, (req, res) => {
+  res.send(req.player);
+});
+
+app.get('/getAllPlayers', dbController.getAllPlayers, (req, res) => {
+  res.send(req.allPlayers);
+});
 
 app.listen(PORT, () => {
 	console.log(`Listening on ${PORT}`);

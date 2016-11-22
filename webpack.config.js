@@ -8,8 +8,8 @@ const PATHS = {
 
 module.exports = {
   entry: [
-    'webpack-dev-server/client?http://localhost:8080', //required for react-hot-loader
-    'webpack/hot/only-dev-server',
+    // 'webpack-dev-server/client?http://localhost:8080', //required for react-hot-loader
+    // 'webpack/hot/only-dev-server',
     './client/src/index.js'
   ],
   output: {
@@ -25,15 +25,16 @@ module.exports = {
   },
   watch: true, //what does watch do? 
   devTool: 'source-map', //what does devTool sourcemap do?
-  devServer: {
-  	contentBase: PATHS.dist,
-  },
+  // devServer: {
+  // 	contentBase: PATHS.dist,
+  // },
   resolve: {
   	extensions: ['', '.js', '.jsx'],
-  },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ]
+  }
+  // ,
+  // plugins: [
+  //   new webpack.HotModuleReplacementPlugin()
+  // ]
 }
 
 //Path is looking to serve HTML and CSS, these need to be inside the same 
