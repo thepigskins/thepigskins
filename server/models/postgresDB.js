@@ -30,7 +30,9 @@ const Team = sequelize.define('teams', {
 });
 
 const Position = sequelize.define('positions', {
-  position: Sequelize.STRING
+  id: { type: Sequelize.INTEGER, primaryKey: true },
+  abbreviation: Sequelize.STRING,
+  positionName: Sequelize.STRING
 });
 
 const Player = sequelize.define('players', {
@@ -62,6 +64,8 @@ const UserPlayer = sequelize.define('usersplayers', {});
 
 Team.hasMany(Player);
 Position.hasMany(Player);
+Player.belongsTo(Position);
+Player.belongsTo(Team);
 User.belongsToMany(Player, { through: 'usersplayers' });
 Player.belongsToMany(User, { through: 'usersplayers' });
 

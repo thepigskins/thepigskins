@@ -1,4 +1,5 @@
 const database = require('../models/postgresDB');
+const positions = require('../initialize/positions')
 
 const dbController = {
   createUser(user) {
@@ -32,7 +33,8 @@ const dbController = {
       twoPt: player.twoPt,
       fumble: player.fumble,
       tdDefense: player.tdDefense,
-      totalPoints: player.totalPoints
+      totalPoints: player.totalPoints,
+      positionId: positions[player.position].positionId
     }).catch((error) => {
       console.log(error);
     });
@@ -71,11 +73,12 @@ const dbController = {
     }); // End of findOne
   }, // End of updatePlayer
 
-  findPlayer(req, res, next) {
+   findPlayer(req, res, next) {
     const firstName = req.query.firstName;
     const lastName = req.query.lastName;
 
-    database.Player.findOne({ where: { firstName, lastName } }).then((player) => {
+//include: [{model: database.Position, required: true}] 
+    database.Player.findOne({ where: { firstName, lastName }, include: [database.Position] }).then((player) => {
       if (!player) res.send(null);
       req.player = player;
       next();

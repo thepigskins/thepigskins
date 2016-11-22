@@ -8,7 +8,11 @@
     "startDev": "webpack-dev-server --hot --inline",
     "build": "webpack --watch",
     "test": "mocha --timeout 20000 test/",
-    "testFront": "mocha -w test/helpers/browser.js test/clientTest/*.js"
+    "testFront": "mocha -w test/helpers/browser.js test/clientTest/*.js",
+    "createTables": "node server/models/postgresDB.js",
+    "loadPositions": "node server/initialize/initPositions.js",
+    "loadTeams": "node server/initialize/initTeams.js",
+    "loadPlayers": "node server/initialize/initPlayers.js"
   },
   "ava": {
     "require": [

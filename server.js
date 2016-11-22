@@ -1,6 +1,5 @@
 const express = require('express');
 const path = require('path');
-const scraperController = require('./scraper');
 const dbController = require('./server/controllers/dbController');
 const app = express();
 const PORT = 8000;
@@ -18,8 +17,6 @@ app.use((request, response, next) => {
 app.get('/', (req, res) => {
   res.sendFile(path.resolve('client/dist/index.html'));
 });
-
-app.get('/populateDatabase', scraperController.getMainData);
 
 app.get('/findPlayer', dbController.findPlayer, (req, res) => {
   res.send(req.player);
