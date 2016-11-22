@@ -102,7 +102,7 @@ const dbController = {
 
 
   getAllPlayers(req, res, next) {
-    database.Player.findAll().then((players) => {
+    database.Player.findAll({include: [database.Position, database.Team]}).then((players) => {
       if (!players) res.send(null);
       req.allPlayers = players.map(player => player.dataValues);
       next();
