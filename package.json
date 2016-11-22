@@ -21,14 +21,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Dlaosb/thepigskins.git"
+    "url": "git+https://github.com/thepigskins/thepigskins.git"
   },
   "author": "Daniel Lao, Shawn Southwell, Simon Situ, Bryan Yee",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Dlaosb/thepigskins/issues"
+    "url": "https://github.com/thepigskins/thepigskins/issues"
   },
-  "homepage": "https://github.com/Dlaosb/thepigskins#readme",
+  "homepage": "https://github.com/thepigskins/thepigskins#readme",
   "dependencies": {
     "axios": "^0.15.2",
     "babel": "^6.5.2",
