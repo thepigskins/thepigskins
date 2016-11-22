@@ -1,5 +1,6 @@
 const database = require('../models/postgresDB');
 const positions = require('../initialize/positions')
+const teams = require('../initialize/teams');
 
 const dbController = {
   createUser(user) {
@@ -15,7 +16,7 @@ const dbController = {
 
   createPlayer(player) {
     database.Player.create({
-      id: player.id,
+      playerId: player.id,
       firstName: player.firstName,
       lastName: player.lastName,
       completedPasses: player.completedPasses,
@@ -34,7 +35,8 @@ const dbController = {
       fumble: player.fumble,
       tdDefense: player.tdDefense,
       totalPoints: player.totalPoints,
-      positionId: positions[player.position].positionId
+      positionId: positions[player.position].positionId,
+      teamId: teams[player.team].teamId
     }).catch((error) => {
       console.log(error);
     });
@@ -49,7 +51,7 @@ const dbController = {
         this.createPlayer(playerData);
       } else {
         player.update({
-          id: playerData.id,
+          playerId: playerData.id,
           firstName: playerData.firstName,
           lastName: playerData.lastName,
           completedPasses: playerData.completedPasses,
@@ -67,7 +69,9 @@ const dbController = {
           twoPt: playerData.twoPt,
           fumble: playerData.fumble,
           tdDefense: playerData.tdDefense,
-          totalPoints: playerData.totalPoints
+          totalPoints: playerData.totalPoints,
+          // positionId: positions[player.position].positionId,
+          // teamId: teams[player.team].teamId
         });
       } // End of else
     }); // End of findOne
@@ -95,6 +99,7 @@ const dbController = {
       });
     });
   },
+
 
   getAllPlayers(req, res, next) {
     database.Player.findAll().then((players) => {
