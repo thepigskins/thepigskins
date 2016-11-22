@@ -7,7 +7,11 @@ var count = 0;
 const allPlayerSeason = 'http://games.espn.com/ffl/leaders?startIndex=0&seasonTotals=true&seasonId=2016';
 
 const scraperController = {
-  getMainData(req, res, next) {
+
+  // req, res and next are optional parameters
+  // the parameters are used when getPlayerData is called a middleware when handling requests
+  // the parameters are not used when initializing the database
+  getPlayerData(req, res, next) {
     const players = {};
 
     request(allPlayerSeason, (error, response, html) => {
@@ -54,8 +58,7 @@ const scraperController = {
         playerObj.fumble = $(playerAttributes[12]).text();
         playerObj.tdDefense = $(playerAttributes[13]).text();
         playerObj.totalPoints = $(playerAttributes[14]).text();
-
-        //grabbing player Id        
+   
         const id = $(rowElement).attr('id').slice(4);
         playerObj.id = id;
         players[id] = playerObj;
@@ -63,7 +66,7 @@ const scraperController = {
         dbController.updatePlayer(playerObj);
       }); // End of $('.pncPlayerRow').each()
 
-      return res.json(players);
+      if (res) return res.json(players);
     }); // End of request
   } // End of getMainData
 };
