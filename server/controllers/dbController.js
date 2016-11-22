@@ -16,7 +16,7 @@ const dbController = {
 
   createPlayer(player) {
     database.Player.create({
-      playerId: player.id,
+      id: player.id,
       firstName: player.firstName,
       lastName: player.lastName,
       completedPasses: player.completedPasses,
@@ -51,7 +51,7 @@ const dbController = {
         this.createPlayer(playerData);
       } else {
         player.update({
-          playerId: playerData.id,
+          id: playerData.id,
           firstName: playerData.firstName,
           lastName: playerData.lastName,
           completedPasses: playerData.completedPasses,
@@ -70,8 +70,8 @@ const dbController = {
           fumble: playerData.fumble,
           tdDefense: playerData.tdDefense,
           totalPoints: playerData.totalPoints,
-          // positionId: positions[player.position].positionId,
-          // teamId: teams[player.team].teamId
+          positionId: positions[player.position].positionId,
+          teamId: teams[player.team].teamId
         });
       } // End of else
     }); // End of findOne
@@ -82,7 +82,7 @@ const dbController = {
     const lastName = req.query.lastName;
 
 //include: [{model: database.Position, required: true}] 
-    database.Player.findOne({ where: { firstName, lastName }, include: [database.Position] }).then((player) => {
+    database.Player.findOne({ where: { firstName, lastName }, include: [database.Position, database.Team] }).then((player) => {
       if (!player) res.send(null);
       req.player = player;
       next();

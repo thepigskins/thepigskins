@@ -10,8 +10,8 @@
     "test": "mocha --timeout 20000 test/",
     "testFront": "mocha -w test/helpers/browser.js test/clientTest/*.js",
     "createTables": "node server/models/postgresDB.js",
-    "loadPositions": "node server/initialize/initPositions.js",
     "loadTeams": "node server/initialize/initTeams.js",
+    "loadPositions": "node server/initialize/initPositions.js",
     "loadPlayers": "node server/initialize/initPlayers.js"
   },
   "ava": {

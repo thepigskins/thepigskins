@@ -3,7 +3,7 @@ const positions = require('./positions');
 
 Object.keys(positions).forEach((abbreviation) => {
   database.Position.create({
-    positionId: positions[abbreviation].positionId,
+    id: positions[abbreviation].positionId,
     abbreviation: abbreviation,
     positionName: positions[abbreviation].positionName 
   }).catch((error) => {

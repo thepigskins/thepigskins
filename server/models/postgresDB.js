@@ -16,7 +16,7 @@ const Sequelize = require('sequelize');
 const sequelize = new Sequelize(REMOTE_URL);
 
 const User = sequelize.define('users', {
-  userId: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
+  id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
   userName: Sequelize.STRING,
   firstName: Sequelize.STRING,
   lastName: Sequelize.STRING,
@@ -24,20 +24,20 @@ const User = sequelize.define('users', {
 });
 
 const Team = sequelize.define('teams', {
-  teamId: { type: Sequelize.INTEGER(8), primaryKey: true },
+  id: { type: Sequelize.INTEGER(8), primaryKey: true },
   abbreviation: Sequelize.STRING,
   teamName: Sequelize.STRING,
   city: Sequelize.STRING
 });
 
 const Position = sequelize.define('positions', {
-  positionId: { type: Sequelize.INTEGER, primaryKey: true },
+  id: { type: Sequelize.INTEGER, primaryKey: true },
   abbreviation: Sequelize.STRING,
   positionName: Sequelize.STRING
 });
 
 const Player = sequelize.define('players', {
-  playerId: { type: Sequelize.INTEGER(8), primaryKey: true },
+  id: { type: Sequelize.INTEGER(8), primaryKey: true },
   firstName: Sequelize.STRING,
   lastName: Sequelize.STRING,
   completedPasses: Sequelize.INTEGER,

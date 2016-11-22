@@ -4,7 +4,7 @@ const teams = require('./teams');
 //'Ari': { teamId: 2,city: 'Arizona', teamName: 'Cardinals' },
 Object.keys(teams).forEach((abbreviation) => {
   database.Team.create({
-    teamId: teams[abbreviation].teamId,
+    id: teams[abbreviation].teamId,
     abbreviation: abbreviation,
     teamName: teams[abbreviation].teamName, 
     city: teams[abbreviation].city
