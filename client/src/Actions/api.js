@@ -23,11 +23,3 @@ export function getPlayerData(playerName){
 		});
 	};
 }
-//
-//     return {
-//       type: GET_PLAYER,
-//       payload: dbQuery,
-//       name: firstName + ' ' + lastName
-//     }
-// }
-// }
