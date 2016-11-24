@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import SearchBar from './SearchBar';
 import Dropdown from './Dropdown';
-import { getPlayerData } from ''
-import { connect } from 'react-redux';
+import { getPlayerData } from '../Actions/api'
+import {connect} from 'react-redux';
 
- @connect((store) => {});
+ @connect((store) => { return {}})
 
  export default class UserInput extends Component{
    constructor(props){
@@ -18,20 +18,16 @@ import { connect } from 'react-redux';
      this.setState({playerName : e.target.value})
    }
 
-   formSubmit(e){
-     e.preventDefault();
+   formSubmit(){
      console.log('form submit firing with this query', this.state.playerName)
      this.props.dispatch(getPlayerData(this.state.playerName));
-   }
-
-   componentWillUpdate(){
      this.setState({ playerName : '' });
    }
 
    render(){
      return (
        <div>
-        <SearchBar getNewPlayer={this.formSubmit}/>
+        <SearchBar formSubmit={this.formSubmit} handleChange={this.handleChange}/>
         <Dropdown />
        </div>
         )

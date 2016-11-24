@@ -10,5 +10,5 @@ import thunk from 'redux-thunk';
 // createStore(mainReducer);
 // console.log("store", store)
 
-const middleware = applyMiddleware(promise, thunk);
+const middleware = applyMiddleware(ReduxPromise, thunk);
 export default createStore(mainReducer, middleware);

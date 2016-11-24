@@ -11,7 +11,7 @@ const initialState = {
 export default function playerReducer(state = initialState, action) {
   switch (action.type) {
     case REQUEST_PLAYER:
-      console.log('is this the data you"re looking for?',action.payload)
+      console.log('is this the data you"re looking for? inside rP reducer',action.payload)
       // action.payload.then(playerDataObj => {
       //   const playerData = generatePlayerObj(playerDataObj.data,action.name);
       //   let newState = Object.assign({}, state, {playerData: state.playerData.concat(playerData)});

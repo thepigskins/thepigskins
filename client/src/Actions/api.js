@@ -11,7 +11,7 @@ export function getPlayerData(playerName){
 		dbQuery.then(response => {
 			dispatch({
 				type: REQUEST_PLAYER,
-				payload: response.data
+				payload: response.data,
         name: `${firstName} ${lastName}`
 			});
 		})
