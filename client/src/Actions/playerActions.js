@@ -44,26 +44,22 @@ export function getPlayerActionCreator(playerName){
 
   axios.get(`http://localhost:8000/findPlayer?firstName=${firstName}&lastName=${lastName}`)
     .then(data => {
-      console.log("DATA::::::", data)
-      const playerDatatoKeep = Object.keys(data.data);
-      const playerDatatoKeepCopy = playerDatatoKeep.slice().slice(1, -4);
-      const test = playerDatatoKeepCopy.filter((stat) => { console.log(stat); if (stat !== 'firstName' || stat !== 'lastName') return stat;});
-
-      // console.log("playerDatatoKeepCopy", playerDatatoKeepCopy)
-      // playerDatatoKeepCopy.forEach( (stat) => {
-      //   if (playerData[stat] === 'name') {
-      //     playerData[stat] = firstName+' '+lastName;
-      //   } else {
-      //   playerData[stat] = data.data[stat]
-      // }
-      // });
-
-      console.log('PLAYERDATA',test)
-
-      // const newPlayerState = Object.assign({}, data.data[playerID], playerStats);
-      // playerData[playerID] = newPlayerState;
-
-      // console.log('PLAYERDATA', playerName)
+      const playerDataKeys = Object.keys(data.data);
+      const position = data.data.position.abbreviation;
+      const team = data.data.team.abbreviation;
+      const necKeys = playerDataKeys.filter((attr)=>{
+        if (attr !== 'createdAt' && attr !== 'position' && attr !== 'team' && attr !== 'updatedAt' && attr !== 'positionId' && attr !== 'teamId' && attr !== 'id' && attr !== 'firstName' && attr !== 'lastName'){
+          return attr;
+        }
+      });
+      necKeys.push('name')
+      necKeys.forEach( (stat) => {
+        if (stat === 'name') {
+          playerData[stat] = firstName + ' ' + lastName;
+        } else {
+        playerData[stat] = data.data[stat]
+      }
+      });
     })
     return {
       type: GET_PLAYER,
@@ -78,11 +74,11 @@ export function deletePlayerActionCreator(index) {
     type: DELETE_PLAYER,
     payload: index
   }
-} 
+}
 
 export function comparePlayersActionCreator() {
   //players is an array of player objects
   return {
     type: COMPARE_PLAYERS
-  }  
+  }
 }
