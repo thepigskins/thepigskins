@@ -31,12 +31,13 @@ class App extends Component {
   }
 
   render() {
+    console.log('this.players',this.props.players.playerData)
     return (
       <div>
         <h1>The Pig Skins</h1>
         {this.props.players.bestPlayer.length > 0 && <BestPlayer playerName={this.props.players.bestPlayer} score={this.props.players.score} />}
-        <UserInput getNewPlayer={this.getNewPlayer} {...this.players} />
-        {this.props.players.playerData.length > 0 && <TableHeader deletePlayer={this.deletePlayer} {...this.players} />}
+        <UserInput getNewPlayer={this.getNewPlayer} {...this.props.players} />
+        {this.props.players.playerData.length > 0 && <TableHeader deletePlayer={this.deletePlayer} {...this.props.players} />}
         <button onClick={this.comparePlayers} className="btn btn-primary">Compare Players</button>
       </div>
     );
@@ -50,7 +51,7 @@ App.propTypes = {
 
 const mapStateToProps = (store) => { return {players : store.player}; }
 
-const mapDispatchToProps = (dispatch) => { 
+const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(actions,dispatch); }
 
 // const mapDispatchToProps = (dispatch) => {
