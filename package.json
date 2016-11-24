@@ -8,7 +8,11 @@
     "startDev": "webpack-dev-server --hot --inline",
     "build": "webpack --watch",
     "test": "mocha --timeout 20000 test/",
-    "testFront": "mocha -w test/helpers/browser.js test/clientTest/*.js"
+    "testFront": "mocha -w test/helpers/browser.js test/clientTest/*.js",
+    "createTables": "node server/models/postgresDB.js",
+    "loadTeams": "node server/initialize/initTeams.js",
+    "loadPositions": "node server/initialize/initPositions.js",
+    "loadPlayers": "node server/initialize/initPlayers.js"
   },
   "ava": {
     "require": [
@@ -17,14 +21,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Dlaosb/thepigskins.git"
+    "url": "git+https://github.com/thepigskins/thepigskins.git"
   },
   "author": "Daniel Lao, Shawn Southwell, Simon Situ, Bryan Yee",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Dlaosb/thepigskins/issues"
+    "url": "https://github.com/thepigskins/thepigskins/issues"
   },
-  "homepage": "https://github.com/Dlaosb/thepigskins#readme",
+  "homepage": "https://github.com/thepigskins/thepigskins#readme",
   "dependencies": {
     "axios": "^0.15.2",
     "babel": "^6.5.2",
