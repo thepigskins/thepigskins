@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import SearchBar from './SearchBar';
 import Dropdown from './Dropdown';
-import { getPlayerData } from '../Actions/api'
+// import { getPlayerData } from '../Actions/api'
 import {connect} from 'react-redux';
 
- @connect((store) => { return {}})
+//  @connect((store) => { return {}})
 
  export default class UserInput extends Component{
    constructor(props){
@@ -20,7 +20,7 @@ import {connect} from 'react-redux';
 
    formSubmit(){
      console.log('form submitted, about to dispatch from client side');
-     this.props.dispatch(getPlayerData(this.state.playerName));
+     this.props.getNewPlayer(this.state.playerName);
      this.setState({ playerName : '' });
    }
 
@@ -33,3 +33,13 @@ import {connect} from 'react-redux';
         )
    }
  }
+
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     getPlayerDataActionCreator : (playerName) => {
+//       dispatch(getPlayerData(playerName))
+//     }
+//   }
+// }
+
+// export default connect(null, mapDispatchToProps)(UserInput);

@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../Actions/playerActions';
+import * as actionsApi from '../Actions/api';
 
 import UserInput from '../components/UserInput';
 import TableHeader from '../components/TableHeader';
@@ -52,7 +53,10 @@ App.propTypes = {
 const mapStateToProps = (store) => { return {players : store.player}; }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(actions,dispatch); }
+  return bindActionCreators(Object.assign({}, actionsApi, actions), dispatch); }
+
+
+// bindActionCreators(Object.assign({}, SomeActions, OtherActions), dispatch)
 
 // const mapDispatchToProps = (dispatch) => {
 //   return {
