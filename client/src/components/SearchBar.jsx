@@ -13,7 +13,6 @@ export default class SearchBar extends Component {
         onSubmit={this.makeSearchQuery.bind(this)}>
           <input
             type='text'
-            ref='playerName'
             onChange={this.props.handleChange}
             value={this.props.playerName}
           />
