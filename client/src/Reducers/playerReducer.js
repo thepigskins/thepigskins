@@ -13,10 +13,11 @@ export default function playerReducer(state = initialState, action) {
     case PLAYER_RECEIVED:
       console.log('is this the data you"re looking for? inside rP reducer',action.payload)
       // action.payload.then(playerDataObj => {
-      //   const playerData = generatePlayerObj(playerDataObj.data,action.name);
-      //   let newState = Object.assign({}, state, {playerData: state.playerData.concat(playerData)});
+        const playerData = generatePlayerObj(action.payload,action.name);
+        let newState = Object.assign({}, state, {playerData: state.playerData.concat(playerData)});
       //   console.log('newState is ', newState, 'playerData is ', playerData)
-      //   return newState;
+      console.log('newState', newState)
+        return newState;
       // });
     case DELETE_PLAYER:
       let copyOfplayerData = state.playerData.slice();

@@ -4,7 +4,7 @@ import Dropdown from './Dropdown';
 import { getPlayerData } from '../Actions/api'
 import {connect} from 'react-redux';
 
- @connect((store) => { return {}})
+ //@connect((store) => { return {}})
 
  export default class UserInput extends Component{
    constructor(props){
@@ -19,14 +19,18 @@ import {connect} from 'react-redux';
    }
 
    formSubmit(){
-     this.props.dispatch(getPlayerData(this.state.playerName));
+     this.props.getNewPlayer(this.state.playerName);
      this.setState({ playerName : '' });
    }
 
    render(){
      return (
        <div>
-        <SearchBar formSubmit={this.formSubmit} handleChange={this.handleChange}/>
+        <SearchBar
+          formSubmit={this.formSubmit}
+          handleChange={this.handleChange}
+          playerName={this.state.playerName}
+        />
         <Dropdown />
        </div>
         )
