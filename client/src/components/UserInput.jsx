@@ -19,7 +19,6 @@ import {connect} from 'react-redux';
    }
 
    formSubmit(){
-     console.log('form submitted, about to dispatch from client side');
      this.props.dispatch(getPlayerData(this.state.playerName));
      this.setState({ playerName : '' });
    }

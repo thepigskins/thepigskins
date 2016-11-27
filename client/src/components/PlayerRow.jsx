@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+const styles = { color: 'red'}
 const PlayerRow = (props) => {
   console.log('inside player row, player object is : ',props.playerData)
   const playerSchema = ['name','team','position','completionPercentage',
@@ -9,7 +10,7 @@ const PlayerRow = (props) => {
     return <td>{props.playerData[datum]}</td>
   }) : '';
   return (
-    <tr>{row}<button onClick={() => props.deletePlayer(props.index)}>remove player</button></tr>
+    <tr>{row}<button style={styles}onClick={() => props.deletePlayer(props.index)}>remove player</button></tr>
   )
 }
 
