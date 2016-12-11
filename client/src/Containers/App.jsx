@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../Actions/playerActions';
+import * as actionsApi from '../Actions/api';
 
 import UserInput from '../components/UserInput';
 import TableHeader from '../components/TableHeader';
@@ -16,18 +17,23 @@ class App extends Component {
     this.deletePlayer = this.deletePlayer.bind(this);
   }
 
+  componentDidUpdate() {
+    console.log("blah")
+    // this.props.clearBestPlayerActionCreator();
+  }
 
   getNewPlayer(playerName) {
-    console.log('sfsf')
-    this.props.getPlayerActionCreator(playerName);
+    console.log('actionsApi', actionsApi)
+    console.log("this.props.api", this.props);
+    this.props.getPlayerData(playerName);
   }
 
   comparePlayers() {
-    actions.comparePlayersActionCreator();
+    this.props.comparePlayersActionCreator();
 }
 
   deletePlayer(index) {
-    actions.deletePlayerActionCreator(index);
+    this.props.deletePlayerActionCreator(index);
   }
 
   render() {
@@ -35,7 +41,7 @@ class App extends Component {
     return (
       <div>
         <h1>The Pig Skins</h1>
-        {this.props.players.bestPlayer.length > 0 && <BestPlayer playerName={this.props.players.bestPlayer} score={this.props.players.score} />}
+        {this.props.players.bestPlayer.length > 0 && <BestPlayer playerObjects={this.props.players.bestPlayer} />}
         <UserInput getNewPlayer={this.getNewPlayer} {...this.props.players} />
         {this.props.players.playerData.length > 0 && <TableHeader deletePlayer={this.deletePlayer} {...this.props.players} />}
         <button onClick={this.comparePlayers} className="btn btn-primary">Compare Players</button>
@@ -52,12 +58,11 @@ App.propTypes = {
 const mapStateToProps = (store) => { return {players : store.player}; }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(actions,dispatch); }
+  return bindActionCreators(Object.assign({}, actionsApi, actions),dispatch); }
 
 // const mapDispatchToProps = (dispatch) => {
 //   return {
-//    getPlayerActionCreator: playerName => dispatch(actions.getPlayerActionCreator(playerName))
-
+//    getPlayerData: playerName => dispatch(actionsApi.getPlayerData(playerName))
 //   }
 // }
 
