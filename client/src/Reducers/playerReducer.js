@@ -1,6 +1,5 @@
 import {PLAYER_RECEIVED, REQUEST_PLAYER_ERR} from '../Actions/api';
 import { GET_PLAYER, DELETE_PLAYER, COMPARE_PLAYERS, CLEAR_BEST_PLAYER } from '../Actions/playerActions';
-import generatePlayerObj from './helperFunctions/generatePlayerObject';
 import comparePlayers from './helperFunctions/comparePlayers';
 
 const initialState = {
@@ -8,15 +7,14 @@ const initialState = {
       filterOption: '',
       bestPlayer: [],
       playerToCompare: [],
-      
+
     };
 
 export default function playerReducer(state = initialState, action) {
   switch (action.type) {
     case PLAYER_RECEIVED:
       const playerObj = Object.assign({}, state, {position: action.payload.position.abbreviation, name: action.name, total: action.payload.totalPoints});
-      const playerData = generatePlayerObj(action.payload,action.name);
-      let newState = Object.assign({}, state, {playerData: state.playerData.concat(playerData)}, {playerToCompare: state.playerToCompare.concat(playerObj)});
+      let newState = Object.assign({}, state, {playerData: state.playerData.concat(action.payload)}, {playerToCompare: state.playerToCompare.concat(playerObj)});
       return newState;
 
     case DELETE_PLAYER:
@@ -30,7 +28,7 @@ export default function playerReducer(state = initialState, action) {
       console.log('frank gore ftw', bestPlayers)
       return Object.assign({}, state, { bestPlayer: state.bestPlayer.concat(bestPlayers) });
 
-    case CLEAR_BEST_PLAYER: 
+    case CLEAR_BEST_PLAYER:
     //delete this shit, infinite state changes
       // return Object.assign({}, state, { bestPlayer: [] });
 
