@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 const PlayerRow = (props) => {
+  
   const { firstName,
           lastName,
           attemptedPasses,
@@ -43,7 +44,7 @@ const PlayerRow = (props) => {
   const row = props.playerData ? data.map((datum, i) => {
     return <td key={i}>{datum}</td>
   }) : '';
-  
+
   return (
     <tr>{row}<button onClick={() => props.deletePlayer(props.index)}>remove player</button></tr>
   )
