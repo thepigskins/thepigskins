@@ -1,9 +1,10 @@
 import React from 'react';
 
 const BestPlayer = (props) => {
+  console.log('in bp', props.playerObjects)
   return (
     <div>
-      {props.playerObjects.map(playerObj => `${playerObj.name} is the best ${playerObj.position}`)}
+      {props.playerObjects.map(playerObj => <p>{playerObj.firstName} {playerObj.lastName} is the best {playerObj.position.abbreviation}</p>)}
     </div>
   )
 }

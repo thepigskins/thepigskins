@@ -19,7 +19,6 @@ import {connect} from 'react-redux';
    }
 
    formSubmit(){
-     console.log('form submitted, about to dispatch from client side');
      this.props.getNewPlayer(this.state.playerName);
      this.setState({ playerName : '' });
    }
@@ -27,9 +26,9 @@ import {connect} from 'react-redux';
    render(){
      return (
        <div>
-        <SearchBar 
-          formSubmit={this.formSubmit} 
-          handleChange={this.handleChange} 
+        <SearchBar
+          formSubmit={this.formSubmit}
+          handleChange={this.handleChange}
           playerName={this.state.playerName}
         />
         <Dropdown />
