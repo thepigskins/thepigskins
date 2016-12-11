@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-
-const styles = { color: 'red'}
+const red = 'lightcoral';
+const fontsize = ((500/1)+'px').toString();
+const styles = { 'color': red, 'font-size': fontsize};
 const PlayerRow = (props) => {
   console.log('inside player row, player object is : ',props.playerData)
   const playerSchema = ['name','team','position','completionPercentage',

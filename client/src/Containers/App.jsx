@@ -17,6 +17,10 @@ class App extends Component {
     this.deletePlayer = this.deletePlayer.bind(this);
   }
 
+  componentDidUpdate() {
+    console.log("blah")
+    // this.props.clearBestPlayerActionCreator();
+  }
 
   getNewPlayer(playerName) {
     console.log('actionsApi', actionsApi)
@@ -37,7 +41,7 @@ class App extends Component {
     return (
       <div>
         <h1>The Pig Skins</h1>
-        {this.props.players.bestPlayer.length > 0 && <BestPlayer playerName={this.props.players.bestPlayer} score={this.props.players.score} />}
+        {this.props.players.bestPlayer.length > 0 && <BestPlayer playerObjects={this.props.players.bestPlayer} />}
         <UserInput getNewPlayer={this.getNewPlayer} {...this.props.players} />
         {this.props.players.playerData.length > 0 && <TableHeader deletePlayer={this.deletePlayer} {...this.props.players} />}
         <button onClick={this.comparePlayers} className="btn btn-primary">Compare Players</button>
