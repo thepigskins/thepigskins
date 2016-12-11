@@ -1,6 +1,5 @@
 function comparePlayers(playersArr) {
-  //players have same position
-  //reduce array to
+
   const positions = {
     'QB': null,
     'RB': null,
@@ -10,17 +9,18 @@ function comparePlayers(playersArr) {
     'DEF': null
   }
 
-  console.log("playersArr", playersArr)
-
   const bestPlayers = [];
+
   playersArr.forEach(player => {
-    if (!positions[player.position] || player.total > positions[player.position].total){
-      positions[player.position] = player;
+    const playerPosition = player.position.abbreviation;
+    if (!positions[playerPosition] || player.totalPoints > positions[playerPosition].totalPoints){
+      positions[playerPosition] = player;
     }
   })
   for(let position in positions){
     if (positions[position]) bestPlayers.push(positions[position]);
   }
+  console.log("These are the best players", bestPlayers)
   return bestPlayers;
 }
 
