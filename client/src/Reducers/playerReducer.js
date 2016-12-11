@@ -7,7 +7,6 @@ const initialState = {
       filterOption: '',
       bestPlayer: [],
       playerToCompare: [],
-
     };
 
 export default function playerReducer(state = initialState, action) {
