@@ -1,4 +1,3 @@
-//App should be a container?
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -15,12 +14,7 @@ class App extends Component {
     this.getNewPlayer = this.getNewPlayer.bind(this);
     this.comparePlayers = this.comparePlayers.bind(this);
     this.deletePlayer = this.deletePlayer.bind(this);
-  }
-
-  componentDidUpdate() {
-    console.log("blah")
-    // this.props.clearBestPlayerActionCreator();
-  }
+	}
 
   getNewPlayer(playerName) {
     console.log('actionsApi', actionsApi)
@@ -37,7 +31,6 @@ class App extends Component {
   }
 
   render() {
-    console.log('this.players',this.props.players.playerData)
     return (
       <div>
         <h1>The Pig Skins</h1>
@@ -59,11 +52,5 @@ const mapStateToProps = (store) => { return {players : store.player}; }
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(Object.assign({}, actionsApi, actions),dispatch); }
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//    getPlayerData: playerName => dispatch(actionsApi.getPlayerData(playerName))
-//   }
-// }
 
 export default connect(mapStateToProps,mapDispatchToProps)(App);
