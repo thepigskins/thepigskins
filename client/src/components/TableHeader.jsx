@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PlayerRow from './PlayerRow';
 
 export default (props) => {
-  console.log('am i getting rendered')
   const players = props.playerData.map((playerData, i) => <PlayerRow index={i} deletePlayer={props.deletePlayer} playerData={playerData} />);
   return (<div>
             <table className="table table-striped">

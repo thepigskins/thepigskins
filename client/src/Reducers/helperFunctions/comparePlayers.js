@@ -17,10 +17,11 @@ function comparePlayers(playersArr) {
       positions[playerPosition] = player;
     }
   })
+
   for(let position in positions){
     if (positions[position]) bestPlayers.push(positions[position]);
   }
-  console.log("These are the best players", bestPlayers)
+
   return bestPlayers;
 }
 
